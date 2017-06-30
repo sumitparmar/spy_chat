@@ -2,6 +2,7 @@
 from details import spy, Spy, ChatMessage, friends
 from steganography.steganography import Steganography
 from datetime import datetime
+import time
 #here are the old status if someone want to choose from older.
 STATUS_MESSAGES = [' Time is precious waste it wisely. ', ' ITS VERY DIFFICULT TO B GREAT. LOSERS PROVE THIS POINT CONTINUOUSLY. ',
                    ' Ill hit u so hard even GOOGLE want able to find you. ',' The only way to do great work is to love what u do. ']
@@ -99,7 +100,7 @@ def select_a_friend():
 
 
 def send_message():
-
+#ask which friend you want ot send message.
     friend_choice = select_a_friend()
 
     original_image = raw_input("What is the name of the image?")
@@ -133,15 +134,16 @@ def read_chat_history():
 
     read_for = select_a_friend()
 #here we create a function "read_chat_history" to read the chat history.
-    print '\n6'
+    now = datetime.now()
+    print '\n'
 
     for chat in friends[read_for].chats:
 
         if chat.sent_by_me:
-
-            print '[%s] %s: %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
-        else:
-            print '[%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
+            if chat.sent_by_me:
+                print '[%s] %s: %s' % (chat.time.strftime("%d %B %Y"), 'You said:', chat.message)
+            else:
+                print '[%s] %s said: %s' % (chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
 
 
 def start_chat(spy):
